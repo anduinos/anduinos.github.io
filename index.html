@@ -1,0 +1,423 @@
+<head></head>
+<body>
+
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+    
+    
+    
+    
+    
+    <div class="container" id="quizcontainer">
+            <div id="quiz"></div>
+    </div>
+
+        
+        
+  
+      
+      
+      
+        
+      
+      
+        
+      
+        
+    <div class="container" id="buttoncontainer">     
+        
+            
+            <button id="submit" class="btn-btn">Get Results</button>
+        </div>
+    
+     
+      
+<div class="container" id="resultscontainer">
+            <div id="results"></div>
+    </div>
+
+<!--<button onclick="coco()">change background color</button>
+<button onclick="tcoco()">change text color</button>
+-->
+
+
+
+<style>
+  .center {
+   margin: 0;
+   position: absolute;
+   transform: translateX(-50%, 0);
+   transform: translateX(-50%, 0);
+   overflow: auto;
+        }
+  #quizcontainer {
+    background-color: yellow;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 25px;
+    overflow: auto;
+        } 
+  #buttoncontainer {
+    background-color: pale-blue;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 25px;
+    transition: 0.3s;
+    overflow: auto;
+    float: center;
+        }
+  #buttoncontainer:hover {
+    background-color: red;
+        }
+  .btn-btn {
+    background-color: #fc3c3c;
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.3s;
+        }
+  .btn-btn:hover {
+    background-color: #fc0000;
+    
+        }
+  
+  
+</style>
+    
+    
+    
+    
+
+
+
+
+
+
+<script>
+
+function coco() {
+
+    var bg = prompt('enter a background color')
+    if (bg !== null) {
+        document.body.style.backgroundColor = bg
+
+    }
+
+    else{
+         document.body.style.backgroundColor = "white"
+    }
+
+
+
+
+
+}
+
+
+
+
+function tcoco(){
+  var tcp = prompt('enter a text color')
+  
+  if (tcp !== null){
+  	document.quizz.style.color = tcp
+  }
+
+  else {
+  	document.quizz.style.color = "black"
+  }
+}
+
+
+
+
+
+
+
+
+
+// goboforokolopo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var myQuestions = [
+   
+    {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },
+        {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },
+        {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },
+        {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },
+        {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },
+        {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },
+        {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },
+        {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },{
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    },
+        {
+        question: "What is 10/2?",
+        answers: {
+            a: '20',
+            b: '22',
+            c: '5'
+        },
+        correctAnswer: 'c'
+    }
+];
+
+var quizContainer = document.getElementById('quiz');
+var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
+var percent;
+
+generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+
+function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+
+    function showQuestions(questions, quizContainer){
+        // we'll need a place to store the output and the answer choices
+        var output = [];
+        var answers;
+
+        // for each question...
+        for(var i=0; i<questions.length; i++){
+            
+            // first reset the list of answers
+            answers = [];
+
+            // for each available answer...
+            for(letter in questions[i].answers){
+
+                // ...add an html radio button
+                answers.push(
+                    '<label>'
+                        + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+                        + letter + ': '
+                        + questions[i].answers[letter]
+                    + '</label>'
+                );
+            }
+
+            // add this question and its answers to the output
+            output.push(
+                '<div class="question">' + questions[i].question + '</div>'
+                + '<div class="answers">' + answers.join('') + '</div>'
+            );
+        }
+
+        // finally combine our output list into one string of html and put it on the page
+        quizContainer.innerHTML = output.join('');
+    }
+
+
+    function showResults(questions, quizContainer, resultsContainer){
+        
+        // gather answer containers from our quiz
+        var answerContainers = quizContainer.querySelectorAll('.answers');
+        
+        // keep track of user's answers
+        var userAnswer = '';
+        var numCorrect = 0;
+        
+        // for each question...
+        for(var i=0; i<questions.length; i++){
+
+            // find selected answer
+            userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+            
+            // if answer is correct
+            if(userAnswer===questions[i].correctAnswer){
+                // add to the number of correct answers
+                numCorrect++;
+                
+                // color the answers green
+                answerContainers[i].style.color = 'lightgreen';
+            }
+            // if answer is wrong or blank
+            else{
+                // color the answers red
+                answerContainers[i].style.color = 'red';
+            }
+        }
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       percent = numCorrect / questions.length * 100
+        // show number of correct answers out of total        
+              
+        var stringycheese;
+        var percentvar = percent;
+        percent = numCorrect / questions.length * 100
+        // show number of correct answers out of total        
+    
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (percentvar == 100){
+    stringycheese = 'good job!'
+    resultsContainer.style.color = 'lightgreen';
+}
+if (percentvar > 80 && pecentvar < 100){
+    stringycheese = 'getting the hang of it now! '
+    resultsContainer.style.color = 'darkgreen';
+}
+
+if (percentvar < 80 && percentvar > 70){
+stringycheese = 'hmm...'
+    resultsContainer.style.color = 'blue';
+}        
+        
+if (percentvar < 69.99999999999999999999999999999999999){
+    stringycheese = 'keep trying!'
+    resultsContainer.style.color = 'red';
+}
+
+
+
+       
+       
+       
+        resultsContainer.innerHTML = stringycheese + '\nYou got ' + numCorrect + '\n out of ' + questions.length + 'Your percent is ' + percent + '%';                            
+    }
+
+    // show questions right away
+    showQuestions(questions, quizContainer);
+    
+    // on submit, show results
+    submitButton.onclick = function(){
+        showResults(questions, quizContainer, resultsContainer);
+    }
+
+}
+//coco()
+</script>
+
+
+
+
+
+</body>
